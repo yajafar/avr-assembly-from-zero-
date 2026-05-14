@@ -1,0 +1,9 @@
+*.elf
+*.hex
+*.o
+*.lst
+*.map
+*.eep
+*.lss
+.DS_Store
+.vscode/
