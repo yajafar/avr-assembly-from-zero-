@@ -22,8 +22,7 @@ Just registers, flags, pins, mistakes, fixes, datasheets, and LEDs that sometime
 
 This project currently uses:
 
-- Arduino Nano
-- ATmega328P microcontroller
+- Arduino board using the ATMEL ATMEGA328P chip (I'm using the Arduino Nano, you can also use the Arduino Uno)
 - Breadboard and jumper wires
 - Linux development environment (although any environment would work too with some modifications)
 
@@ -236,6 +235,11 @@ what the microcontroller actually runs
 ```
 
 For learning low-level programming, that connection is everything.
+
+## Reference documents
+
+- [Arduino Nano pinout](docs/Pinout-Nano.pdf)
+- [ATMEGA328P Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
 
 ## Common mistakes documented here
 
