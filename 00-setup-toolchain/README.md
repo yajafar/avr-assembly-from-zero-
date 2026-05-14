@@ -1,10 +1,10 @@
 # 00 - Toolchain Setup
 
-This section sets up the toolchain used throughout the project.
+This section explains the basic toolchain needed to build and upload AVR assembly programs for the Arduino Nano / ATmega328P.
 
-The goal is to write AVR assembly, build it into a HEX file, upload it to an Arduino Nano / ATmega328P, and inspect the final disassembly.
+This project is mainly developed and tested on Linux. I included short Windows and macOS notes as a starting point, but they may need small changes depending on your system, board clone, USB driver, and bootloader.
 
-The main workflow is:
+The basic workflow is:
 
 ```text
 .S assembly source
@@ -24,7 +24,7 @@ This project uses:
 - `avr-objcopy` - converts ELF files into HEX files
 - `avr-objdump` - shows disassembly
 - `avrdude` - uploads the HEX file to the Arduino Nano
-- `make` - automates the build/upload commands
+- `make` - automates the build and upload commands
 
 ## Linux setup
 
@@ -35,51 +35,24 @@ sudo apt update
 sudo apt install gcc-avr binutils-avr avr-libc avrdude make
 ```
 
+This is the setup I use for the project.
+
 ## Windows setup
 
-There are two realistic options on Windows.
+The simplest Windows option is probably **WSL with Ubuntu**, because it gives you a Linux-like terminal and lets you use nearly the same commands as this project.
 
-### Option 1: WSL, recommended
-
-The simplest and cleanest option is to use WSL with Ubuntu.
-
-Inside WSL:
+Inside WSL Ubuntu:
 
 ```bash
 sudo apt update
 sudo apt install gcc-avr binutils-avr avr-libc avrdude make
 ```
 
-This gives you a Linux-like workflow, which matches the rest of this project.
+One thing to keep in mind: uploading to the Arduino from WSL may require extra USB or serial-port setup.
 
-One thing to keep in mind: uploading to the Arduino from WSL may require extra USB/serial setup depending on your Windows configuration.
+If that becomes annoying, another option is to build the `.hex` file in WSL and upload it using a Windows AVRDUDE setup.
 
-If USB/serial access becomes annoying, you can still build the `.hex` file in WSL and upload it from Windows using AVRDUDE or another upload tool.
-
-### Option 2: MSYS2, native Windows
-
-If you want a native Windows setup, MSYS2 is another option.
-
-Install MSYS2, open the **MINGW64** terminal, then install AVR tools with `pacman`.
-
-Package names may change over time, but the general idea is:
-
-```bash
-pacman -S mingw-w64-x86_64-avr-gcc
-pacman -S mingw-w64-x86_64-avrdude
-pacman -S make
-```
-
-Then use the same project commands:
-
-```bash
-make
-make upload
-make disasm
-make clean
-```
-
-On Windows, the serial port will usually look like:
+On Windows, the Arduino port usually looks like:
 
 ```text
 COM3
@@ -87,45 +60,41 @@ COM4
 COM5
 ```
 
-So upload may look like:
+So the upload command may look like:
 
 ```bash
 make upload PORT=COM3
 ```
 
+I have not tested every Windows setup, so treat this as a starting point rather than a complete Windows guide.
+
 ## macOS setup
 
-On macOS, use Homebrew.
+On macOS, the usual approach is to use Homebrew.
 
-Install the AVR toolchain and AVRDUDE:
+A typical setup may look like:
 
 ```bash
-brew tap osx-cross/avr
-brew install avr-gcc
 brew install avrdude
 brew install make
 ```
 
-Depending on your macOS setup, `make` may already be available through the Xcode Command Line Tools.
+For the AVR GCC toolchain, macOS setups can vary. Some people install it through Homebrew taps, while others use packaged AVR toolchains.
 
-You can install those with:
-
-```bash
-xcode-select --install
-```
-
-The Arduino Nano serial port on macOS usually looks like:
+The Arduino port on macOS usually looks like:
 
 ```text
 /dev/cu.usbserial-XXXX
 /dev/cu.usbmodemXXXX
 ```
 
-So upload may look like:
+So the upload command may look like:
 
 ```bash
 make upload PORT=/dev/cu.usbserial-XXXX
 ```
+
+I have not fully tested this project on macOS yet, so this section is intentionally minimal.
 
 ## Finding the Arduino port
 
@@ -152,6 +121,22 @@ sudo usermod -aG dialout $USER
 
 Then log out and log back in.
 
+### Windows
+
+Check Device Manager under:
+
+```text
+Ports (COM & LPT)
+```
+
+Look for something like:
+
+```text
+COM3
+COM4
+COM5
+```
+
 ### macOS
 
 Run:
@@ -165,22 +150,6 @@ Look for something like:
 ```text
 /dev/cu.usbserial-XXXX
 /dev/cu.usbmodemXXXX
-```
-
-### Windows
-
-Check Device Manager under:
-
-```text
-Ports (COM & LPT)
-```
-
-Look for the Arduino Nano port, usually something like:
-
-```text
-COM3
-COM4
-COM5
 ```
 
 ## Arduino Nano upload settings
@@ -197,29 +166,27 @@ Some older Nano bootloaders use:
 BAUD = 57600
 ```
 
-If upload fails, try changing the baud rate.
-
-Example:
+If upload fails, try changing the baud rate:
 
 ```bash
 make upload BAUD=57600
 ```
 
-## Typical commands
+## Common commands
 
-Build the project:
+Build:
 
 ```bash
 make
 ```
 
-Upload to the Arduino Nano:
+Upload:
 
 ```bash
 make upload
 ```
 
-Show the disassembly:
+Show disassembly:
 
 ```bash
 make disasm
@@ -233,21 +200,21 @@ make clean
 
 ## Overriding Makefile settings
 
-You can override settings directly from the terminal.
+You can override Makefile variables from the terminal.
 
-Example: different serial port
+Different port:
 
 ```bash
 make upload PORT=/dev/ttyACM0
 ```
 
-Example: old Nano bootloader
+Old Nano bootloader:
 
 ```bash
 make upload BAUD=57600
 ```
 
-Example: different source file
+Different source file:
 
 ```bash
 make upload TARGET=buttonblink
@@ -261,6 +228,6 @@ buttonblink.S
 
 ## Notes
 
-This project is mainly developed and tested on Linux.
+This is not meant to be a complete cross-platform AVR toolchain guide.
 
-Windows and macOS should work too, but port names, permissions, and upload behavior may differ slightly depending on the board, USB chip, driver, and bootloader.
+It is just the minimum setup needed to follow this project. Linux is the main tested environment, while Windows and macOS notes are included to help people get started if they are not using Linux.
