@@ -17,6 +17,8 @@ No external components are needed.
 
 ## Registers used
 
+Refer to the Datasheet of the ATMEGA328P chip.
+
 ```asm
 .equ DDRB,  0x04
 .equ PORTB, 0x05
@@ -39,7 +41,7 @@ For an output pin:
 - `0` = `LOW`
 - `1` = `HIGH`
 
-The Arduino Nano built-in LED is connected to `PB5`, which is Arduino digital pin `D13`.
+The Arduino Nano built-in LED is connected to `PB5`, which is Arduino digital pin `D13`. Refer to your specific Arduino pinout diagrams provided in the docs.
 
 ## Core idea
 
@@ -111,7 +113,7 @@ make upload BAUD=57600
 make disasm
 ```
 
-This shows the actual instructions that were generated.
+This shows the actual instructions that were generated. When trying this on your own, check out what the assembler outputs compared to what you wrote. It will all make sense later.
 
 ## What I learned
 
