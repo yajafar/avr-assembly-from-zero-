@@ -10,7 +10,7 @@ No Arduino libraries. No `digitalWrite()`. Just the ATmega328P registers.
 
 ## Hardware
 
-- Arduino Nano
+- Arduino Nano/UNO/Pro Mini
 - Built-in LED on D13 / PB5
 
 No external components are needed.
@@ -18,6 +18,7 @@ No external components are needed.
 ## Registers used
 
 Refer to the Datasheet of the ATMEGA328P chip.
+![datasheet-pg280](../images/datasheet-ref-reg-summary-pg280)
 
 ```asm
 .equ DDRB,  0x04
