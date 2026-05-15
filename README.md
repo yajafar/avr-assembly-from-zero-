@@ -1,6 +1,6 @@
 # AVR Assembly From Zero
 
-A beginner-friendly AVR assembly series for the Arduino Nano / ATmega328P, built from real hardware experiments, Linux tooling, Makefiles, disassembly, and the mistakes beginners actually make.
+A beginner-friendly AVR assembly series for the ATmega328P which is used in the Arduino Nano/Uno/Pro Mini, built from real hardware experiments, Linux tooling, Makefiles, disassembly, and the mistakes beginners actually make.
 
 ## Why this project exists
 Most Arduino tutorials hide the hardware behind libraries.
@@ -22,10 +22,10 @@ Just registers, flags, pins, mistakes, fixes, datasheets, and LEDs that sometime
 
 This project currently uses:
 
-- Arduino board using the ATMEL ATMEGA328P chip (I'm using the Arduino Nano, you can also use the Arduino Uno)
+- Arduino board using the ATmega328P microcontroller (I'm using the Arduino Nano, you can also use the Arduino Uno)
 - Breadboard and jumper wires
-- Linux development environment (although any environment would work too with some modifications)
-  \
+- Linux development environment
+  
 <img src="images/hardware.jpeg" alt="Nano" width="200">
 
 ## Tools used
@@ -122,7 +122,7 @@ out
 andi
 ```
 
-This is slightly bigger and less efficient than `sbi`/`cbi`, but it teaches an important asm patterns:
+This is slightly bigger and less efficient than `sbi`/`cbi`, but it teaches an important asm pattern:
 
 ```text
 read register → modify bits → write register back
@@ -132,7 +132,7 @@ This pattern becomes important when working with more complex registers later.
 
 ### 03 - Button input with pull-up logic
 
-This project uses a button connected to Arduino D3 / ATMEGA328P PD3.
+This project uses a button connected to Arduino D13 / ATmega328P PD3.
 
 The button uses pull-up logic:
 
