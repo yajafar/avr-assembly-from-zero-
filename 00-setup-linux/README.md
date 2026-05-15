@@ -1,8 +1,14 @@
 # 00 - Linux Setup
 
-This section explains the Linux toolchain used to build and upload AVR assembly programs for the Arduino Nano / ATmega328P.
+This section explains the Linux toolchain used to build and upload AVR assembly programs for the ATmega328P which is used in the Arduino Nano / Uno / PRO Mini.
 
-This project is developed and tested on Linux.
+I'm using the Arduino Nano, yes it's a clone but it doesn't matter much for our use cases.
+
+
+This project is developed and tested on Ubuntu Linux.
+
+I will add Windows and Mac documentation in the future.
+
 
 The basic workflow is:
 
@@ -83,6 +89,8 @@ Some older Nano bootloaders use:
 ```make
 BAUD = 57600
 ```
+
+Mine uses 115200 BUAD, but yours might be different.
 
 If upload fails, try:
 
