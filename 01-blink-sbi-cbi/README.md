@@ -119,7 +119,10 @@ make upload BAUD=57600
 make disasm
 ```
 
-This shows the actual instructions that were generated. When trying this on your own, check out what the assembler outputs compared to what you wrote. It will all make sense later.
+This shows the actual instructions that were generated. When trying this on your own, check out what the assembler outputs against what you wrote.
+
+## Demonstration
+<img src="../images/01-blink-off.jpeg" alt="off" width="200"> <img src="../images/01-blink-on.jpeg" alt="on" width="200">
 
 ## What I learned
 
