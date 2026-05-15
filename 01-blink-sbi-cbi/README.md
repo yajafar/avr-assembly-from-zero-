@@ -18,7 +18,7 @@ No external components are needed.
 ## Registers used
 
 Refer to the Datasheet of the ATMEGA328P chip.
-![datasheet-pg280](../images/datasheet-ref-reg-summary-pg280)
+![datasheet-pg280](../images/datasheet-ref-reg-summary-pg280.png)
 
 ```asm
 .equ DDRB,  0x04
