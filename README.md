@@ -25,6 +25,8 @@ This project currently uses:
 - Arduino board using the ATMEL ATMEGA328P chip (I'm using the Arduino Nano, you can also use the Arduino Uno)
 - Breadboard and jumper wires
 - Linux development environment (although any environment would work too with some modifications)
+  \
+<img src="images/hardware.jpeg" alt="Nano" width="200">
 
 ## Tools used
 
