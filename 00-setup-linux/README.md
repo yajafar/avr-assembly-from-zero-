@@ -2,12 +2,12 @@
 
 This section explains the Linux toolchain used to build and upload AVR assembly programs for the ATmega328P which is used in the Arduino Nano / Uno / PRO Mini.
 
-I'm using the Arduino Nano, yes it's a clone but it doesn't matter much for our use cases.
+I'm using the Arduino Nano, yes mine is a clone but it doesn't matter much for our use case.
+\
+<img src="../images/arduino-nano.jpeg" alt="Nano" width="200">
 
 
-This project is developed and tested on Ubuntu Linux.
-
-I will add Windows and Mac documentation in the future.
+This project is primarily developed and tested on Ubuntu Linux. But I will add Windows and Mac documentation in the future.
 
 
 The basic workflow is:
